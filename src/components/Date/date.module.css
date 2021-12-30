@@ -1,0 +1,50 @@
+.Wrapper {
+  position: relative;
+  top: 0;
+  left: 0;
+  right: 0;
+
+  height: 7vh;
+  width: 100%;
+  max-width: 590px;
+
+  background: #5600ff;
+
+  z-index: 1;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  padding: 0 2rem;
+  margin: 0 auto;
+}
+
+@media (min-width: 590px) {
+  .Wrapper {
+    border-radius: 0 0 7px 7px;
+  }
+}
+
+.Year {
+  background: #ffffff40;
+
+  width: 6rem;
+  height: 2.75rem;
+
+  border-radius: 4px;
+
+  display: grid;
+  place-items: center;
+}
+
+.OpenInput {
+  pointer-events: none;
+}
+
+.InputDate {
+  background: none;
+  border: none;
+
+  font-size: 0px;
+}

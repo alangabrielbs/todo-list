@@ -1,0 +1,35 @@
+.Wrapper {
+  width: 100%;
+  height: 5vh;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  position: fixed;
+  bottom: 2%;
+  left: 50%;
+
+  transform: translate(-50%, 0);
+}
+
+.AddTodo {
+  width: 55px;
+  height: 55px;
+
+  cursor: pointer;
+
+  background-color: #736ced;
+  box-shadow: 0 0 7px 2px #0000ff60;
+
+  border-radius: 50%;
+  border: none;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  color: #fff;
+
+  transform: translateY(-15px);
+}

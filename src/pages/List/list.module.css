@@ -1,0 +1,91 @@
+.List {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.Button {
+  background: none;
+
+  border: none;
+}
+
+.Button svg {
+  filter: invert(1);
+
+  width: 26px;
+  height: 26px;
+}
+
+.Square {
+  width: 25px;
+  height: 25px;
+
+  border: 1px solid #fff;
+  border-radius: 4px;
+
+  cursor: pointer;
+
+  display: grid;
+  place-items: center;
+}
+
+.List.IsChecked {
+  animation: backgroundAnimation 0.3s forwards;
+}
+
+@keyframes backgroundAnimation {
+  0% {
+    background: linear-gradient(
+      85deg,
+      #31313120,
+      transparent,
+      transparent,
+      transparent,
+      transparent
+    );
+  }
+  25% {
+    background: linear-gradient(
+      85deg,
+      #31313120,
+      #31313120,
+      transparent,
+      transparent,
+      transparent
+    );
+  }
+
+  50% {
+    background: linear-gradient(
+      85deg,
+      #31313120,
+      #31313120,
+      #31313120,
+      transparent,
+      transparent
+    );
+  }
+
+  75% {
+    background: linear-gradient(
+      85deg,
+      #31313120,
+      #31313120,
+      #31313120,
+      #31313120,
+      transparent
+    );
+  }
+
+  100% {
+    background: linear-gradient(
+      85deg,
+      #31313120,
+      #31313120,
+      #31313120,
+      #31313120,
+      #31313120
+    );
+  }
+}
