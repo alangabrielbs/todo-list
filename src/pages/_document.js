@@ -17,6 +17,8 @@ class Doc extends Document {
             rel="stylesheet"
           />
           <link rel="icon" type="image/x-icon" href="/favicon.svg" />
+
+          <meta name="theme-color" content="var(--blue)" />
         </Head>
         <body>
           <Main />

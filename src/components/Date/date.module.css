@@ -8,7 +8,7 @@
   width: 100%;
   max-width: 1040px;
 
-  background: #5600ff;
+  background: var(--blue);
 
   z-index: 1;
 
@@ -27,7 +27,7 @@
 }
 
 .Year {
-  background: #ffffff40;
+  background: var(--white-transparent);
 
   width: 6rem;
   height: 2.75rem;

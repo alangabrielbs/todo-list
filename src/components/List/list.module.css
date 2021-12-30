@@ -2,10 +2,10 @@
   width: 100%;
   min-height: 8vh;
 
-  border-right: 5px solid #5600ff;
+  border-right: 5px solid var(--blue);
   border-radius: 9px;
 
-  background-color: #00000020;
+  background-color: var(--gray-dark);
 
   padding: 1rem 2rem;
   margin-top: 1rem;
