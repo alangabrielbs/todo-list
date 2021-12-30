@@ -7,13 +7,13 @@
 
   background-color: #00000020;
 
-  padding: 1rem 2%;
+  padding: 1rem 2rem;
   margin-top: 1rem;
 
   transition: border 0.2s linear;
 
   display: grid;
-  grid-template-columns: 94% 5%;
+  grid-template-columns: 1fr 2rem;
   grid-template-rows: auto;
   align-items: center;
   gap: 1rem;
