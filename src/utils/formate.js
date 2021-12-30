@@ -1,4 +1,4 @@
-export function formate() {
+export default function formate() {
   function removeLateralSpaces(string) {
     return string.trim();
   }

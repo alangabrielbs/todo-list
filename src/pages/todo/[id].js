@@ -1,14 +1,14 @@
 import { useContext, useEffect, useState, useCallback } from "react";
-import Router, { useRouter } from "next/router";
-import Head from "next/head";
-import Link from "next/link";
-import styles from "./list.module.css";
 import { TrashIcon, CheckIcon } from "@radix-ui/react-icons";
 import { ListContext } from "../../context/ListsContext/index";
 import { ListComponent } from "../../components/List";
+import Router, { useRouter } from "next/router";
+import Head from "next/head";
+import Link from "next/link";
 import Layout from "../../components/Layout";
 import Date from "../../components/Date";
-import { formate } from "../../utils/formate";
+import styles from "./list.module.css";
+import formate from "../../utils/formate";
 
 export default function List() {
   const { lists, setLists } = useContext(ListContext);
@@ -24,7 +24,7 @@ export default function List() {
       const list = lists.filter((item) => item.id === id);
       setList(list);
     })();
-  }, [lists]);
+  }, [lists, id]);
 
   const handleRemoveTask = useCallback(
     (id) => {
@@ -32,7 +32,7 @@ export default function List() {
       setLists(filter);
       return Router.push("/");
     },
-    [list, Router]
+    [lists, setLists]
   );
 
   function handleChangeATask(__, index) {
@@ -91,7 +91,7 @@ export default function List() {
             </ul>
 
             {ListProps.items.map((itemList, itemIndex) => (
-              <section key={ListProps.id + Math.random() * 100}>
+              <section key={itemIndex}>
                 <ListComponent>
                   <ul>
                     <li
