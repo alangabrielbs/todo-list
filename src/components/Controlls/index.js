@@ -2,6 +2,8 @@ import { useState } from "react";
 import CreateTodo from "../CreateTodo";
 import styles from "./controlls.module.css";
 
+import { PlusIcon } from "@radix-ui/react-icons";
+
 export default function Controlls() {
   const [createTodoModalIsOpen, setCreateTodoModalIsOpen] = useState(false);
 
@@ -22,7 +24,7 @@ export default function Controlls() {
           onClick={openModal}
           aria-label="abrir modal"
         >
-          +
+          <PlusIcon />
         </button>
       </nav>
     </>

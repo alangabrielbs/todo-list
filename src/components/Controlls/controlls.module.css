@@ -14,8 +14,8 @@
 }
 
 .AddTodo {
-  width: 55px;
-  height: 55px;
+  width: 5.5rem;
+  height: 5.5rem;
 
   cursor: pointer;
 
@@ -30,6 +30,10 @@
   justify-content: center;
 
   color: #fff;
-
   transform: translateY(-15px);
+}
+
+.AddTodo svg {
+  width: 2.5rem;
+  height: 2.5rem;
 }
