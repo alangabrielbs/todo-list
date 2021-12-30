@@ -20,10 +20,8 @@ export default function Content() {
           <ListComponent borderColor={`#${list.borderColor}`} key={list.id}>
             <Link href={`/todo/${list.id}`}>
               <a>
-                <div>
-                  <h2>{list.name}</h2>
-                  {list.items.length} items
-                </div>
+                {list.name} <br />
+                <span>{list.items.length} items</span>
               </a>
             </Link>
 
