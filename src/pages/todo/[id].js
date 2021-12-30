@@ -90,14 +90,16 @@ export default function List() {
 
             {ListProps.items.map((itemList, itemIndex) => (
               <ListComponent key={itemIndex}>
-                <h4>
+                <h4 className={itemList.isChecked && styles.TextIsChecked}>
                   {removeLateralSpaces(
                     firstLetterTransformUppercase(itemList.name)
                   )}
                 </h4>
 
                 <button
-                  className={styles.Checkbox}
+                  className={`${styles.Checkbox} ${
+                    itemList.isChecked && styles.IsChecked
+                  }`}
                   aria-label="Marcar tarefa como concluida"
                   title="Marcar tarefa como concluida"
                   onClick={() => handleChangeATask(itemList.name, itemIndex)}

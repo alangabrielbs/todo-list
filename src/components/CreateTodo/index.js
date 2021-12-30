@@ -57,7 +57,7 @@ export default function CreateTodo({ isOpen, closeModal }) {
             onChange={(e) => setName(e.target.value)}
           />
 
-          <input
+          <textarea
             placeholder="Adicione quais são as tarefas desejadas para está lista"
             value={tasksInputValue}
             onChange={(e) => setTasksInputValue(e.target.value)}
