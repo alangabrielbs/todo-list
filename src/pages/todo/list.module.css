@@ -17,9 +17,11 @@
   height: 26px;
 }
 
-.Square {
+.Checkbox {
   width: 25px;
   height: 25px;
+
+  background: none;
 
   border: 1px solid #fff;
   border-radius: 4px;
@@ -30,8 +32,30 @@
   place-items: center;
 }
 
+.Checkbox svg {
+  stroke: #aaa;
+}
+
+.List h4,
+.List .Checkbox {
+  transition: all 0.3s linear;
+}
+
 .List.IsChecked {
   animation: backgroundAnimation 0.3s forwards;
+}
+
+.List.IsChecked h4 {
+  color: #aaa;
+  text-decoration: line-through;
+}
+
+.List.IsChecked .Checkbox {
+  border-color: #aaa;
+}
+
+.List.IsChecked .Checkbox svg {
+  stroke: #aaa;
 }
 
 @keyframes backgroundAnimation {

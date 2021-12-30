@@ -83,7 +83,11 @@ export default function List() {
                     </a>
                   </Link>
 
-                  <button className={styles.Button}>
+                  <button
+                    className={styles.Button}
+                    aria-label="deletar lista de tarefas"
+                    title="deletar lista de tarefas"
+                  >
                     <TrashIcon onClick={() => handleRemoveTask(ListProps.id)} />
                   </button>
                 </li>
@@ -95,6 +99,9 @@ export default function List() {
                 <ListComponent>
                   <ul>
                     <li
+                      title={removeLateralSpaces(
+                        firstLetterTransformUppercase(itemList.name)
+                      )}
                       className={`${styles.List} ${
                         itemList.isChecked ? styles.IsChecked : ""
                       }`}
@@ -105,14 +112,16 @@ export default function List() {
                         )}
                       </h4>
 
-                      <div
-                        className={styles.Square}
+                      <button
+                        className={styles.Checkbox}
+                        aria-label="Marcar tarefa como concluida"
+                        title="Marcar tarefa como concluida"
                         onClick={() =>
                           handleChangeATask(itemList.name, itemIndex)
                         }
                       >
                         {itemList.isChecked ? <CheckIcon /> : ""}
-                      </div>
+                      </button>
                     </li>
                   </ul>
                 </ListComponent>
