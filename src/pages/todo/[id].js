@@ -66,68 +66,47 @@ export default function List() {
       <Date type={1} />
       <Layout>
         {list.map((ListProps) => (
-          <section key={ListProps.id}>
+          <ul key={ListProps.id}>
             <Head>
               <title>{ListProps.name}</title>
             </Head>
 
-            <ul>
-              <ListComponent>
-                <li style={{ borderRightColor: `#${ListProps.borderColor}` }}>
-                  <Link href={`/`}>
-                    <a>
-                      <div>
-                        <h2>{ListProps.name}</h2>
-                        {ListProps.items.length} items
-                      </div>
-                    </a>
-                  </Link>
+            <ListComponent>
+              <Link href={`/`}>
+                <a>
+                  {ListProps.name} <br />
+                  <span>{ListProps.items.length} items</span>
+                </a>
+              </Link>
 
-                  <button
-                    className={styles.Button}
-                    aria-label="deletar lista de tarefas"
-                    title="deletar lista de tarefas"
-                  >
-                    <TrashIcon onClick={() => handleRemoveTask(ListProps.id)} />
-                  </button>
-                </li>
-              </ListComponent>
-            </ul>
+              <button
+                className={styles.Button}
+                aria-label="deletar lista de tarefas"
+                title="deletar lista de tarefas"
+              >
+                <TrashIcon onClick={() => handleRemoveTask(ListProps.id)} />
+              </button>
+            </ListComponent>
 
             {ListProps.items.map((itemList, itemIndex) => (
-              <section key={itemIndex}>
-                <ListComponent>
-                  <ul>
-                    <li
-                      title={removeLateralSpaces(
-                        firstLetterTransformUppercase(itemList.name)
-                      )}
-                      className={`${styles.List} ${
-                        itemList.isChecked ? styles.IsChecked : ""
-                      }`}
-                    >
-                      <h4>
-                        {removeLateralSpaces(
-                          firstLetterTransformUppercase(itemList.name)
-                        )}
-                      </h4>
+              <ListComponent key={itemIndex}>
+                <h4>
+                  {removeLateralSpaces(
+                    firstLetterTransformUppercase(itemList.name)
+                  )}
+                </h4>
 
-                      <button
-                        className={styles.Checkbox}
-                        aria-label="Marcar tarefa como concluida"
-                        title="Marcar tarefa como concluida"
-                        onClick={() =>
-                          handleChangeATask(itemList.name, itemIndex)
-                        }
-                      >
-                        {itemList.isChecked ? <CheckIcon /> : ""}
-                      </button>
-                    </li>
-                  </ul>
-                </ListComponent>
-              </section>
+                <button
+                  className={styles.Checkbox}
+                  aria-label="Marcar tarefa como concluida"
+                  title="Marcar tarefa como concluida"
+                  onClick={() => handleChangeATask(itemList.name, itemIndex)}
+                >
+                  {itemList.isChecked ? <CheckIcon /> : ""}
+                </button>
+              </ListComponent>
             ))}
-          </section>
+          </ul>
         ))}
       </Layout>
     </>

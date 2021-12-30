@@ -17,7 +17,11 @@ export default function Controlls() {
     <>
       <CreateTodo isOpen={createTodoModalIsOpen} closeModal={closeModal} />
       <nav className={styles.Wrapper}>
-        <button className={styles.AddTodo} onClick={openModal}>
+        <button
+          className={styles.AddTodo}
+          onClick={openModal}
+          aria-label="abrir modal"
+        >
           +
         </button>
       </nav>

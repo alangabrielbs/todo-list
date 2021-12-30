@@ -15,33 +15,31 @@ export default function Content() {
       <Head>
         <title>Home - todo-list klinkonskydev</title>
       </Head>
-      {lists.map((list) => (
-        <ul key={list.id}>
-          <ListComponent>
-            <li style={{ borderRightColor: `#${list.borderColor}` }}>
-              <Link href={`/todo/${list.id}`}>
-                <a>
-                  <div>
-                    <h2>{list.name}</h2>
-                    {list.items.length} items
-                  </div>
-                </a>
-              </Link>
+      <ul>
+        {lists.map((list) => (
+          <ListComponent borderColor={`#${list.borderColor}`} key={list.id}>
+            <Link href={`/todo/${list.id}`}>
+              <a>
+                <div>
+                  <h2>{list.name}</h2>
+                  {list.items.length} items
+                </div>
+              </a>
+            </Link>
 
-              <Link href={`/List/${list.id}`}>
-                <a>
-                  <Image
-                    src="/eye.svg"
-                    width={30}
-                    height={30}
-                    alt="visualizar a task"
-                  />
-                </a>
-              </Link>
-            </li>
+            <Link href={`/todo/${list.id}`}>
+              <a style={{ filter: "invert(1)" }}>
+                <Image
+                  src="/eye.svg"
+                  width={30}
+                  height={30}
+                  alt="visualizar a task"
+                />
+              </a>
+            </Link>
           </ListComponent>
-        </ul>
-      ))}
+        ))}
+      </ul>
     </>
   );
 }

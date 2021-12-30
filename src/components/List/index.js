@@ -1,5 +1,9 @@
 import style from "./list.module.css";
 
-export function ListComponent({ children }) {
-  return <section className={style.Wrapper}>{children}</section>;
+export function ListComponent({ children, borderColor }) {
+  return (
+    <li className={style.Wrapper} style={{ borderRightColor: borderColor }}>
+      {children}
+    </li>
+  );
 }
