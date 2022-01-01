@@ -21,3 +21,8 @@ export interface IListContext {
 export interface IChildren {
   children: ReactNode;
 }
+
+export interface ListComponentProps {
+  children: ReactNode;
+  borderColor?: string;
+}

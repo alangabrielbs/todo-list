@@ -9,10 +9,11 @@ import Layout from "../../components/Layout";
 import Date from "../../components/Date";
 import styles from "./list.module.css";
 import formate from "../../utils/formate";
+import { IList } from "../../interfaces";
 
 export default function List() {
   const { lists, setLists } = useContext(ListContext);
-  const [list, setList] = useState([]);
+  const [list, setList] = useState<IList[]>([]);
 
   const router = useRouter();
   const { id } = router.query;
@@ -35,7 +36,7 @@ export default function List() {
     [lists, setLists]
   );
 
-  function handleChangeATask(__, index) {
+  function handleChangeATask(__: string, index: number) {
     let listsIndex = 0;
     lists.map((el, index) => (el.id === id ? (listsIndex = index) : ""));
 
@@ -55,7 +56,7 @@ export default function List() {
     return handleChangeTodos(list[0], listsIndex);
   }
 
-  function handleChangeTodos(newTodo, arrayIndex) {
+  function handleChangeTodos(newTodo: IList, arrayIndex: number) {
     return setLists((oldLists) =>
       oldLists.map((todo, i) => (arrayIndex === i ? newTodo : todo))
     );
@@ -102,7 +103,7 @@ export default function List() {
                   }`}
                   aria-label="Marcar tarefa como concluida"
                   title="Marcar tarefa como concluida"
-                  onClick={() => handleChangeATask(itemList.name, itemIndex)}
+                  onClick={() => handleChangeATask("", itemIndex)}
                 >
                   {itemList.isChecked ? <CheckIcon /> : ""}
                 </button>
