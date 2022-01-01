@@ -1,9 +1,11 @@
 import { createContext, useEffect, useState } from "react";
 
-export const ListContext = createContext([]);
+import { IList, IListContext } from "../../interfaces/index";
+
+export const ListContext = createContext<IListContext>({} as IListContext);
 
 export default function ListProvider({ children }) {
-  const [lists, setLists] = useState([]);
+  const [lists, setLists] = useState<IList[]>([]);
 
   useEffect(() => {
     const getLocalStorageTodos = localStorage.getItem("myTodoList");

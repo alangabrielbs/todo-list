@@ -7,7 +7,6 @@ export default function DateComponent({ type }) {
   return (
     <section className={style.Wrapper}>
       <p>{type ? `${week} de ${month}` : month}</p>
-
       <div className={style.Year}>
         <p>{year}</p>
       </div>

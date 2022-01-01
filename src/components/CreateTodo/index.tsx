@@ -1,8 +1,13 @@
-import { useContext, useState } from "react";
+import { FormEvent, useContext, useState } from "react";
 import styles from "./createtodo.module.css";
 
 import { ListContext } from "../../context/ListsContext/index";
 import { nanoid } from "nanoid";
+
+interface ItemProps {
+  name: string;
+  isChecked: boolean;
+}
 
 export default function CreateTodo({ isOpen, closeModal }) {
   const { setLists } = useContext(ListContext);
@@ -10,17 +15,17 @@ export default function CreateTodo({ isOpen, closeModal }) {
   const [name, setName] = useState("");
   const [tasksInputValue, setTasksInputValue] = useState("");
 
-  function noSpaces(string) {
+  function noSpaces(string: string) {
     return string.trim();
   }
 
-  function getRandomArbitrary(min, max) {
+  function getRandomArbitrary(min: number, max: number) {
     return Math.floor(Math.random() * (max - min)) + min;
   }
 
-  function createNewTodo(event) {
+  function createNewTodo(event: FormEvent) {
     event.preventDefault();
-    const formatedItems = [];
+    const formatedItems: ItemProps[] = [];
 
     const items = tasksInputValue
       .split(";")
@@ -39,8 +44,8 @@ export default function CreateTodo({ isOpen, closeModal }) {
       {
         id: nanoid(),
         name,
-        items: formatedItems,
         borderColor: getRandomArbitrary(1000, 9999),
+        items: formatedItems,
       },
     ]);
 
@@ -48,7 +53,7 @@ export default function CreateTodo({ isOpen, closeModal }) {
   }
 
   return (
-    <div className={`${styles.Wrapper} ${isOpen ? "" : styles.disabled}`}>
+    <div className={`${styles.Wrapper} ${!isOpen && styles.disabled}`}>
       <form className={styles.FormContent} onSubmit={createNewTodo}>
         <div>
           <input
