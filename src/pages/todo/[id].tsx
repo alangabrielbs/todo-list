@@ -13,6 +13,7 @@ import styles from "./list.module.css";
 import todoHooks from "../../hooks/todo";
 import Modal from "../../components/Modal";
 import CheckboxButton from "../../components/Template/CheckboxButton";
+import Percentage from "../../components/Percentage";
 
 export default function List() {
   const {
@@ -56,12 +57,22 @@ export default function List() {
             </Head>
 
             <ListComponent>
-              <Link href={`/`}>
-                <a>
-                  {ListProps.name} <br />
-                  <span>{ListProps.items.length} items</span>
-                </a>
-              </Link>
+              <div>
+                <Link href={`/`}>
+                  <a>
+                    {ListProps.name} <br />
+                    <span>{ListProps.items.length} items</span>
+                  </a>
+                </Link>
+
+                <Percentage
+                  itemsCompletos={
+                    ListProps.items.filter((item) => item.isChecked === true)
+                      .length
+                  }
+                  quantidadeDeItems={ListProps.items.length}
+                />
+              </div>
 
               <div className={styles.Actions}>
                 <button

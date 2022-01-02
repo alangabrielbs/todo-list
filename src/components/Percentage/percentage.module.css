@@ -1,11 +1,15 @@
 .Wrapper {
-  width: 100%;
+  width: 95%;
   height: 0.3rem;
 
   background-color: #ddd;
   border-radius: 5px;
 
   margin-top: 1rem;
+
+  position: absolute;
+  bottom: 1px;
+  left: 2.5%;
 }
 
 .Wrapper div {
