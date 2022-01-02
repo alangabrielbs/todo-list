@@ -12,7 +12,6 @@ import Date from "../../components/Date";
 import styles from "./list.module.css";
 import todoHooks from "../../hooks/todo";
 import Modal from "../../components/Modal";
-import { ModalTodo } from "../../components/ModalTodo";
 import CheckboxButton from "../../components/Template/CheckboxButton";
 
 export default function List() {
@@ -21,7 +20,6 @@ export default function List() {
     handleRemoveTask,
     removeLateralSpaces,
     firstLetterTransformUppercase,
-    handleChangeATask,
     newTodoModalIsOpen,
     editTodoModalIsOpen,
     openNewTodoModal,
