@@ -3,20 +3,24 @@ import { ModalList } from "../ModalList";
 import { ModalTodo } from "../ModalTodo";
 
 export default function Modal({
-  isOpen,
-  closeModal,
   type,
-  pageId,
+  closeModal,
+  isOpen,
+  todoState,
+  todoNameDispatch,
 }: ModalProps) {
   switch (type) {
     case "create":
-      return (
-        <ModalList isOpen={isOpen} closeModal={closeModal} pageId={pageId} />
-      );
+      return <ModalList isOpen={isOpen} closeModal={closeModal} />;
 
     case "edit":
       return (
-        <ModalTodo isOpen={isOpen} closeModal={closeModal} pageId={pageId} />
+        <ModalTodo
+          isOpen={isOpen}
+          closeModal={closeModal}
+          todoState={todoState}
+          todoNameDispatch={todoNameDispatch}
+        />
       );
   }
 }

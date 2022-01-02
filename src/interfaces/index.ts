@@ -14,6 +14,12 @@ export interface IList {
   items: ItemProps[];
 }
 
+export interface ListLinkProps {
+  id?: string;
+  name: string;
+  items: ItemProps[];
+}
+
 export interface IListContext {
   lists: IList[];
   setLists: Dispatch<SetStateAction<IList[]>>;
@@ -21,6 +27,15 @@ export interface IListContext {
 
 export interface IChildren {
   children: ReactNode;
+}
+
+export interface DateProps {
+  type: "home" | "list";
+}
+
+export interface ActionButtonsProps {
+  itemList: ItemProps;
+  itemIndex: number;
 }
 
 export interface ListComponentProps {

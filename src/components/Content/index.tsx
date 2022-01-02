@@ -1,29 +1,24 @@
+import Head from "next/head";
 import Link from "next/link";
 import Image from "next/image";
 
-import { useContext } from "react";
-
-import { ListContext } from "../../context/ListsContext";
+import { useListContext } from "../../context/ListsContext";
 import { ListComponent } from "../List";
-import Head from "next/head";
+import ListLink from "../Template/ListLink";
 
 export default function Content() {
-  const { lists } = useContext(ListContext);
+  const { lists } = useListContext();
 
   return (
     <>
       <Head>
-        <title>Home - todo-list klinkonskydev</title>
+        <title>Todo-list</title>
       </Head>
+
       <ul>
         {lists.map((list) => (
           <ListComponent borderColor={`#${list.borderColor}`} key={list.id}>
-            <Link href={`/todo/${list.id}`}>
-              <a>
-                {list.name} <br />
-                <span>{list.items.length} items</span>
-              </a>
-            </Link>
+            <ListLink id={list.id} items={list.items} name={list.name} />
 
             <Link href={`/todo/${list.id}`}>
               <a style={{ filter: "invert(1)" }}>

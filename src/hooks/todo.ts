@@ -4,7 +4,6 @@ import Router, { useRouter } from "next/router";
 import { ListContext } from "../context/ListsContext/index";
 import formate from "../utils/formate";
 import { IList, ItemProps } from "../interfaces";
-import { nanoid } from "nanoid";
 
 export default function useTodo() {
   const { lists, setLists } = useContext(ListContext);

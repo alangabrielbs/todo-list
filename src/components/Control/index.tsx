@@ -1,9 +1,9 @@
 import { useState } from "react";
 import Modal from "../Modal";
-import styles from "./controls.module.css";
+import styles from "./control.module.css";
 import { PlusIcon } from "@radix-ui/react-icons";
 
-export default function Controlls() {
+export default function Control() {
   const [createTodoModalIsOpen, setCreateTodoModalIsOpen] = useState(false);
 
   function closeModal() {

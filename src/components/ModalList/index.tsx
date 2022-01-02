@@ -43,7 +43,7 @@ export function ModalList({ isOpen, closeModal }: ModalProps) {
   }
 
   return (
-    <div className={`${styles.Wrapper} ${isOpen ? "" : styles.disabled}`}>
+    <section className={`${styles.Wrapper} ${isOpen ? "" : styles.disabled}`}>
       <form className={styles.FormContent} onSubmit={createNewTodo}>
         <div>
           <input
@@ -67,6 +67,6 @@ export function ModalList({ isOpen, closeModal }: ModalProps) {
           <button type="submit">Adicionar</button>
         </div>
       </form>
-    </div>
+    </section>
   );
 }

@@ -1,22 +1,22 @@
-import style from "./date.module.css";
-import UtilsDate from "../../utils/date";
 import Link from "next/link";
 import { ArrowLeftIcon } from "@radix-ui/react-icons";
+import style from "./date.module.css";
 
-export default function DateComponent({ type }) {
+import UtilsDate from "../../utils/date";
+import { DateProps } from "../../interfaces";
+
+export default function DateComponent({ type }: DateProps) {
   const { month, year, date } = UtilsDate();
 
   return (
     <section className={style.Wrapper}>
       <div className={style.Content}>
-        {type ? (
+        {type === "list" && (
           <Link href={"/"}>
             <a>
               <ArrowLeftIcon />
             </a>
           </Link>
-        ) : (
-          ""
         )}
 
         <p>

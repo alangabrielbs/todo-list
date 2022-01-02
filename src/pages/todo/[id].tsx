@@ -13,6 +13,7 @@ import styles from "./list.module.css";
 import todoHooks from "../../hooks/todo";
 import Modal from "../../components/Modal";
 import { ModalTodo } from "../../components/ModalTodo";
+import CheckboxButton from "../../components/Template/CheckboxButton";
 
 export default function List() {
   const {
@@ -33,13 +34,16 @@ export default function List() {
 
   return (
     <>
-      <Date type={1} />
+      <Date type="list" />
+
       <Modal
         type="edit"
         isOpen={newTodoModalIsOpen}
         closeModal={closeNewTodoModal}
       />
-      <ModalTodo
+
+      <Modal
+        type="edit"
         closeModal={closeEditTodoModal}
         isOpen={editTodoModalIsOpen}
         todoState={todoName}
@@ -90,16 +94,7 @@ export default function List() {
                 </h4>
 
                 <div className={styles.Actions}>
-                  <button
-                    className={`${styles.Checkbox} ${
-                      itemList.isChecked ? styles.IsChecked : ""
-                    }`}
-                    aria-label="Marcar tarefa como concluida"
-                    title="Marcar tarefa como concluida"
-                    onClick={() => handleChangeATask("", itemIndex)}
-                  >
-                    {itemList.isChecked ? <CheckIcon /> : ""}
-                  </button>
+                  <CheckboxButton itemIndex={itemIndex} itemList={itemList} />
 
                   <button
                     className={styles.Button}

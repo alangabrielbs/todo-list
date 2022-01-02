@@ -2,7 +2,7 @@ import { FormEvent, useContext, useState } from "react";
 import { useRouter } from "next/router";
 
 import styles from "./modal.module.css";
-import { ModalProps, ItemProps } from "../../interfaces";
+import { ModalProps } from "../../interfaces";
 import { ListContext } from "../../context/ListsContext";
 import { nanoid } from "nanoid";
 
@@ -20,15 +20,18 @@ export function ModalTodo({
 
   function createNewTodo(event: FormEvent) {
     event.preventDefault();
-    const newTodoObject = { id: nanoid(), name, isChecked: false };
 
+    if (name.trim() === "") return;
+
+    const newTodoObject = { id: nanoid(), name, isChecked: false };
     const list = lists.find((list) => list.id === id);
     list.items.push(newTodoObject);
 
     const oldLists = lists.filter((list) => list.id !== id);
 
     setLists([list, ...oldLists]);
-    return closeModal();
+    setName("");
+    closeModal();
   }
 
   function editTodo(event: FormEvent) {
@@ -48,7 +51,7 @@ export function ModalTodo({
   }
 
   return (
-    <div className={`${styles.Wrapper} ${isOpen ? "" : styles.disabled}`}>
+    <section className={`${styles.Wrapper} ${isOpen ? "" : styles.disabled}`}>
       <form
         className={styles.FormContent}
         onSubmit={todoState ? editTodo : createNewTodo}
@@ -74,6 +77,6 @@ export function ModalTodo({
           <button type="submit">Adicionar</button>
         </div>
       </form>
-    </div>
+    </section>
   );
 }

@@ -1,4 +1,4 @@
-import { createContext, useEffect, useState } from "react";
+import { createContext, useContext, useEffect, useState } from "react";
 
 import { IList, IListContext } from "../../interfaces/index";
 
@@ -25,4 +25,14 @@ export default function ListProvider({ children }) {
       {children}
     </ListContext.Provider>
   );
+}
+
+export function useListContext() {
+  const context = useContext(ListContext);
+
+  if (!context)
+    throw new Error("useListContext must be used within a ListProvider");
+
+  const { lists, setLists } = context;
+  return { lists, setLists };
 }
