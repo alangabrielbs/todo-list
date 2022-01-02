@@ -5,6 +5,7 @@ import Image from "next/image";
 import { useListContext } from "../../context/ListsContext";
 import { ListComponent } from "../List";
 import ListLink from "../Template/ListLink";
+import Percentage from "../Percentage";
 
 export default function Content() {
   const { lists } = useListContext();
@@ -18,7 +19,15 @@ export default function Content() {
       <ul>
         {lists.map((list) => (
           <ListComponent borderColor={`#${list.borderColor}`} key={list.id}>
-            <ListLink id={list.id} items={list.items} name={list.name} />
+            <div>
+              <ListLink id={list.id} items={list.items} name={list.name} />
+              <Percentage
+                itemsCompletos={
+                  list.items.filter((item) => item.isChecked === true).length
+                }
+                quantidadeDeItems={list.items.length}
+              />
+            </div>
 
             <Link href={`/todo/${list.id}`}>
               <a style={{ filter: "invert(1)" }}>
