@@ -1,31 +1,70 @@
 import { FormEvent, useContext, useState } from "react";
+import { useRouter } from "next/router";
+
 import styles from "./modal.module.css";
 import { ModalProps, ItemProps } from "../../interfaces";
 import { ListContext } from "../../context/ListsContext";
+import { nanoid } from "nanoid";
 
-export function ModalTodo({ isOpen, closeModal, pageId }: ModalProps) {
+export function ModalTodo({
+  isOpen,
+  closeModal,
+  todoState,
+  todoNameDispatch,
+}: ModalProps) {
   const { lists, setLists } = useContext(ListContext);
   const [name, setName] = useState("");
 
+  const router = useRouter();
+  const { id } = router.query;
+
   function createNewTodo(event: FormEvent) {
     event.preventDefault();
-    const newTodoObject = { name, isChecked: false };
-    const newTodo = lists.filter((list) => list.id === pageId)[0];
-    newTodo.items.push(newTodoObject);
+    const newTodoObject = { id: nanoid(), name, isChecked: false };
 
-    const oldLists = lists.filter((list) => list.id !== pageId);
+    const list = lists.find((list) => list.id === id);
+    list.items.push(newTodoObject);
 
-    setLists([...oldLists, newTodo]);
+    const oldLists = lists.filter((list) => list.id !== id);
+
+    setLists([list, ...oldLists]);
+    return closeModal();
+  }
+
+  function editTodo(event: FormEvent) {
+    event.preventDefault();
+
+    const list = lists.find((list) => list.id === id);
+    const todos = list.items.filter((todo) => todo.id !== todoState.id);
+    todos.push(todoState);
+    list.items = todos;
+
+    setLists((prevState) => [
+      ...prevState.filter((list) => list.id !== id),
+      list,
+    ]);
+
     return closeModal();
   }
 
   return (
     <div className={`${styles.Wrapper} ${isOpen ? "" : styles.disabled}`}>
-      <form className={styles.FormContent} onSubmit={createNewTodo}>
+      <form
+        className={styles.FormContent}
+        onSubmit={todoState ? editTodo : createNewTodo}
+      >
         <input
           placeholder="Adicione uma nova task"
-          value={name}
-          onChange={(e) => setName(e.target.value)}
+          value={todoState ? todoState.name : name}
+          onChange={(e) =>
+            todoState
+              ? todoNameDispatch({
+                  id: todoState.id,
+                  name: e.target.value,
+                  isChecked: todoState.isChecked,
+                })
+              : setName(e.target.value)
+          }
         />
 
         <div className={styles.ButtonsContainer}>

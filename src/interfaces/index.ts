@@ -1,6 +1,7 @@
 import { Dispatch, ReactNode, SetStateAction } from "react";
 
 export interface ItemProps {
+  id: string;
   name: string;
   isChecked: boolean;
 }
@@ -32,4 +33,6 @@ export interface ModalProps {
   closeModal: () => void;
   type?: "create" | "edit";
   pageId?: string | string[];
+  todoState?: ItemProps;
+  todoNameDispatch?: Dispatch<SetStateAction<ItemProps>>;
 }

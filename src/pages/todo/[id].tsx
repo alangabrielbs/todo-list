@@ -12,18 +12,23 @@ import Date from "../../components/Date";
 import styles from "./list.module.css";
 import todoHooks from "../../hooks/todo";
 import Modal from "../../components/Modal";
+import { ModalTodo } from "../../components/ModalTodo";
 
 export default function List() {
   const {
     list,
-    firstLetterTransformUppercase,
-    handleChangeATask,
     handleRemoveTask,
     removeLateralSpaces,
+    firstLetterTransformUppercase,
+    handleChangeATask,
     newTodoModalIsOpen,
-    closeModal,
-    openModal,
-    id,
+    editTodoModalIsOpen,
+    openNewTodoModal,
+    closeNewTodoModal,
+    closeEditTodoModal,
+    todoName,
+    setTodoName,
+    editTodo,
   } = todoHooks();
 
   return (
@@ -32,8 +37,13 @@ export default function List() {
       <Modal
         type="edit"
         isOpen={newTodoModalIsOpen}
-        closeModal={closeModal}
-        pageId={id}
+        closeModal={closeNewTodoModal}
+      />
+      <ModalTodo
+        closeModal={closeEditTodoModal}
+        isOpen={editTodoModalIsOpen}
+        todoState={todoName}
+        todoNameDispatch={setTodoName}
       />
 
       <Layout>
@@ -60,7 +70,7 @@ export default function List() {
                   <TrashIcon onClick={() => handleRemoveTask(ListProps.id)} />
                 </button>
 
-                <button className={styles.Button} onClick={openModal}>
+                <button className={styles.Button} onClick={openNewTodoModal}>
                   <PlusIcon />
                 </button>
               </div>
@@ -89,6 +99,13 @@ export default function List() {
                     onClick={() => handleChangeATask("", itemIndex)}
                   >
                     {itemList.isChecked ? <CheckIcon /> : ""}
+                  </button>
+
+                  <button
+                    className={styles.Button}
+                    onClick={() => editTodo(itemList)}
+                  >
+                    <Pencil1Icon />
                   </button>
                 </div>
               </ListComponent>

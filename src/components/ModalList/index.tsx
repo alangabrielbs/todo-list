@@ -23,7 +23,7 @@ export function ModalList({ isOpen, closeModal }: ModalProps) {
       .filter((strings) => strings.trim() !== "");
 
     for (let item in items) {
-      const newObject = { name: items[item], isChecked: false };
+      const newObject = { id: nanoid(), name: items[item], isChecked: false };
       formatedItems.push(newObject);
     }
 

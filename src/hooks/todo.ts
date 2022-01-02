@@ -3,13 +3,21 @@ import Router, { useRouter } from "next/router";
 
 import { ListContext } from "../context/ListsContext/index";
 import formate from "../utils/formate";
-import { IList } from "../interfaces";
+import { IList, ItemProps } from "../interfaces";
+import { nanoid } from "nanoid";
 
-export default function todoHooks() {
+export default function useTodo() {
   const { lists, setLists } = useContext(ListContext);
   const [list, setList] = useState<IList[]>([]);
 
   const [newTodoModalIsOpen, setNewModalIsOpen] = useState(false);
+  const [editTodoModalIsOpen, setEditTodoIsOpen] = useState(false);
+
+  const [todoName, setTodoName] = useState<ItemProps>({
+    id: "",
+    name: "",
+    isChecked: false,
+  });
 
   const router = useRouter();
   const { id } = router.query;
@@ -40,6 +48,7 @@ export default function todoHooks() {
     const { items } = list[0];
 
     const newObj = {
+      id: filter.id,
       name: filter.name,
       isChecked: filter.isChecked ? false : true,
     };
@@ -58,12 +67,21 @@ export default function todoHooks() {
     );
   }
 
-  function openModal() {
-    setNewModalIsOpen(true);
+  function editTodo(todo: ItemProps) {
+    setEditTodoIsOpen(true);
+    return setTodoName(todo);
   }
 
-  function closeModal() {
-    setNewModalIsOpen(false);
+  function openNewTodoModal() {
+    return setNewModalIsOpen(true);
+  }
+
+  function closeNewTodoModal() {
+    return setNewModalIsOpen(false);
+  }
+
+  function closeEditTodoModal() {
+    return setEditTodoIsOpen(false);
   }
 
   return {
@@ -73,8 +91,12 @@ export default function todoHooks() {
     firstLetterTransformUppercase,
     handleChangeATask,
     newTodoModalIsOpen,
-    openModal,
-    closeModal,
-    id,
+    editTodoModalIsOpen,
+    openNewTodoModal,
+    closeNewTodoModal,
+    closeEditTodoModal,
+    todoName,
+    editTodo,
+    setTodoName,
   };
 }
