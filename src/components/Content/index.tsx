@@ -32,6 +32,7 @@ export default function Content() {
                   width={30}
                   height={30}
                   alt="visualizar a task"
+                  priority
                 />
               </a>
             </Link>

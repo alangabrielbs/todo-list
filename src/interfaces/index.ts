@@ -26,3 +26,10 @@ export interface ListComponentProps {
   children: ReactNode;
   borderColor?: string;
 }
+
+export interface ModalProps {
+  isOpen: boolean;
+  closeModal: () => void;
+  type?: "create" | "edit";
+  pageId?: string | string[];
+}

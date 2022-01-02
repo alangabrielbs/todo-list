@@ -1,7 +1,6 @@
 import { useState } from "react";
-import CreateTodo from "../CreateTodo";
-import styles from "./controlls.module.css";
-
+import Modal from "../Modal";
+import styles from "./controls.module.css";
 import { PlusIcon } from "@radix-ui/react-icons";
 
 export default function Controlls() {
@@ -17,7 +16,11 @@ export default function Controlls() {
 
   return (
     <>
-      <CreateTodo isOpen={createTodoModalIsOpen} closeModal={closeModal} />
+      <Modal
+        type="create"
+        isOpen={createTodoModalIsOpen}
+        closeModal={closeModal}
+      />
       <nav className={styles.Wrapper}>
         <button
           className={styles.AddTodo}

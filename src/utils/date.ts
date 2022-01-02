@@ -16,19 +16,8 @@ export default function UtilsDate() {
     "Dezembro",
   ];
 
-  const days = [
-    "Domingo",
-    "Segunda-Feira",
-    "Terça-Feira",
-    "Quarta-Feira",
-    "Quinta-Feira",
-    "Sexta-Feira",
-    "Sábado",
-  ];
-
-  const week = days[date.getDay()];
   const month = months[date.getMonth()];
   const year = date.getFullYear();
 
-  return { week, month, year };
+  return { month, year, date };
 }

@@ -21,14 +21,30 @@
 }
 
 .TextIsChecked {
-  color: #aaa;
+  opacity: 0.6;
   text-decoration: line-through;
 }
 
 .IsChecked .Checkbox {
-  border-color: #aaa;
+  border-color: #aaaaaa30;
 }
 
 .IsChecked .Checkbox svg {
   stroke: #aaa;
+}
+
+.Header {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+
+  padding: 1rem 1rem 0;
+}
+
+.Actions {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  gap: 7px;
 }

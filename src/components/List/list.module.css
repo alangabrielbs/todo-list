@@ -10,10 +10,11 @@
   padding: 1rem 2rem;
   margin-top: 1rem;
 
+  word-break: break-all;
   transition: border 0.2s linear;
 
   display: grid;
-  grid-template-columns: 1fr 2rem;
+  grid-template-columns: 1fr auto;
   grid-template-rows: auto;
   align-items: center;
   gap: 1rem;
@@ -25,16 +26,16 @@
   background: none;
   cursor: pointer;
 
-  width: 26px;
-  height: 26px;
+  width: 2rem;
+  height: 2rem;
 
   display: flex;
   align-items: center;
 }
 
 .Wrapper button svg {
-  width: 100%;
-  height: 100%;
+  width: 2rem;
+  height: 2rem;
 }
 
 .Wrapper:hover {
@@ -42,6 +43,7 @@
 }
 
 .Wrapper a {
+  word-wrap: break-word;
   font: 600 1.3rem var(--font-family);
 }
 

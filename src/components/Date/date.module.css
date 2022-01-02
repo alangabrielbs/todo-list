@@ -48,3 +48,14 @@
 
   font-size: 0px;
 }
+
+.Content {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.Content a {
+  display: flex;
+  align-items: center;
+}

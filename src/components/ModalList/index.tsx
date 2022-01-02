@@ -1,50 +1,40 @@
 import { FormEvent, useContext, useState } from "react";
-import styles from "./createtodo.module.css";
-
-import { ListContext } from "../../context/ListsContext/index";
+import styles from "./modal.module.css";
+import { ModalProps, ItemProps } from "../../interfaces";
+import { ListContext } from "../../context/ListsContext";
 import { nanoid } from "nanoid";
 
-interface ItemProps {
-  name: string;
-  isChecked: boolean;
-}
-
-export default function CreateTodo({ isOpen, closeModal }) {
+export function ModalList({ isOpen, closeModal }: ModalProps) {
   const { setLists } = useContext(ListContext);
-
-  const [name, setName] = useState("");
   const [tasksInputValue, setTasksInputValue] = useState("");
-
-  function noSpaces(string: string) {
-    return string.trim();
-  }
-
-  function getRandomArbitrary(min: number, max: number) {
-    return Math.floor(Math.random() * (max - min)) + min;
-  }
+  const [name, setName] = useState("");
 
   function createNewTodo(event: FormEvent) {
     event.preventDefault();
     const formatedItems: ItemProps[] = [];
 
+    function getRandomBorderColor(min: number, max: number) {
+      return Math.floor(Math.random() * (max - min)) + min;
+    }
+
     const items = tasksInputValue
       .split(";")
       .map((el) => el.trim())
-      .filter((strings) => noSpaces(strings) !== "");
+      .filter((strings) => strings.trim() !== "");
 
     for (let item in items) {
       const newObject = { name: items[item], isChecked: false };
       formatedItems.push(newObject);
     }
 
-    if (noSpaces(name) === "") return;
+    if (name.trim() === "") return;
 
     setLists((prevState) => [
       ...prevState,
       {
         id: nanoid(),
         name,
-        borderColor: getRandomArbitrary(1000, 9999),
+        borderColor: getRandomBorderColor(1000, 9999),
         items: formatedItems,
       },
     ]);
@@ -53,7 +43,7 @@ export default function CreateTodo({ isOpen, closeModal }) {
   }
 
   return (
-    <div className={`${styles.Wrapper} ${!isOpen && styles.disabled}`}>
+    <div className={`${styles.Wrapper} ${isOpen ? "" : styles.disabled}`}>
       <form className={styles.FormContent} onSubmit={createNewTodo}>
         <div>
           <input

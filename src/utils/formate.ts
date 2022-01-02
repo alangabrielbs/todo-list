@@ -1,9 +1,9 @@
 export default function formate() {
-  function removeLateralSpaces(string) {
+  function removeLateralSpaces(string: string) {
     return string.trim();
   }
 
-  function firstLetterTransformUppercase(string) {
+  function firstLetterTransformUppercase(string: string) {
     return string.toUpperCase();
   }
 

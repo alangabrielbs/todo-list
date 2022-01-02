@@ -1,0 +1,80 @@
+import { useContext, useEffect, useState, useCallback } from "react";
+import Router, { useRouter } from "next/router";
+
+import { ListContext } from "../context/ListsContext/index";
+import formate from "../utils/formate";
+import { IList } from "../interfaces";
+
+export default function todoHooks() {
+  const { lists, setLists } = useContext(ListContext);
+  const [list, setList] = useState<IList[]>([]);
+
+  const [newTodoModalIsOpen, setNewModalIsOpen] = useState(false);
+
+  const router = useRouter();
+  const { id } = router.query;
+
+  const { firstLetterTransformUppercase, removeLateralSpaces } = formate();
+
+  useEffect(() => {
+    (function getListByArray() {
+      const list = lists.filter((item) => item.id === id);
+      setList(list);
+    })();
+  }, [lists, id]);
+
+  const handleRemoveTask = useCallback(
+    (id) => {
+      const filter = lists.filter((list) => list.id !== id);
+      setLists(filter);
+      return Router.push("/");
+    },
+    [lists, setLists]
+  );
+
+  function handleChangeATask(__: string, index: number) {
+    let listsIndex = 0;
+    lists.map((el, index) => (el.id === id ? (listsIndex = index) : ""));
+
+    const filter = lists[listsIndex].items[index];
+    const { items } = list[0];
+
+    const newObj = {
+      name: filter.name,
+      isChecked: filter.isChecked ? false : true,
+    };
+
+    const filteredItems = [...items.filter((item) => item !== filter), newObj];
+    list[0].items = filteredItems;
+
+    setList(list);
+
+    return handleChangeTodos(list[0], listsIndex);
+  }
+
+  function handleChangeTodos(newTodo: IList, arrayIndex: number) {
+    return setLists((oldLists) =>
+      oldLists.map((todo, i) => (arrayIndex === i ? newTodo : todo))
+    );
+  }
+
+  function openModal() {
+    setNewModalIsOpen(true);
+  }
+
+  function closeModal() {
+    setNewModalIsOpen(false);
+  }
+
+  return {
+    list,
+    handleRemoveTask,
+    removeLateralSpaces,
+    firstLetterTransformUppercase,
+    handleChangeATask,
+    newTodoModalIsOpen,
+    openModal,
+    closeModal,
+    id,
+  };
+}
