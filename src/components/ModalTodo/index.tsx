@@ -37,15 +37,13 @@ export function ModalTodo({
   function editTodo(event: FormEvent) {
     event.preventDefault();
 
+    const [otherLists] = lists.filter((list) => list.id !== id);
     const list = lists.find((list) => list.id === id);
     const todos = list.items.filter((todo) => todo.id !== todoState.id);
     todos.push(todoState);
     list.items = todos;
 
-    setLists((prevState) => [
-      ...prevState.filter((list) => list.id !== id),
-      list,
-    ]);
+    setLists(() => [list, otherLists]);
 
     return closeModal();
   }
