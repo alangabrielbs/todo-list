@@ -10,7 +10,7 @@ import Link from "next/link";
 import Layout from "../../components/Layout";
 import Date from "../../components/Date";
 import styles from "./list.module.css";
-import todoHooks from "../../hooks/todo";
+import useTodo from "../../hooks/todo";
 import Modal from "../../components/Modal";
 import CheckboxButton from "../../components/Template/CheckboxButton";
 import Percentage from "../../components/Percentage";
@@ -29,7 +29,7 @@ export default function List() {
     todoName,
     setTodoName,
     editTodo,
-  } = todoHooks();
+  } = useTodo();
 
   return (
     <>
