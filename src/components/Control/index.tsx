@@ -1,7 +1,7 @@
+import { PlusIcon } from "@radix-ui/react-icons";
 import { useState } from "react";
 import Modal from "../Modal";
 import styles from "./control.module.css";
-import { PlusIcon } from "@radix-ui/react-icons";
 
 export default function Control() {
   const [createTodoModalIsOpen, setCreateTodoModalIsOpen] = useState(false);
@@ -27,7 +27,8 @@ export default function Control() {
           onClick={openModal}
           aria-label="abrir modal"
         >
-          <PlusIcon />
+          <span>Adicionar nova tarefa</span>
+          {/* <PlusIcon /> */}
         </button>
       </nav>
     </>
